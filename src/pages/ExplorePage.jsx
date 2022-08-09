@@ -3,7 +3,7 @@ import { Box, Flex } from '@chakra-ui/react'
 import PostContainer from '../features/posts/PostContainer'
 import { useSelector } from 'react-redux'
 
-const Home = () => {
+const Explore = () => {
   const posts = useSelector(state => state.posts)
   
   return (
@@ -22,4 +22,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Explore
