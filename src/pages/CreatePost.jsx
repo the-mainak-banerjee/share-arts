@@ -1,10 +1,14 @@
+import { Box, Flex } from '@chakra-ui/react'
 import React from 'react'
+import PostUploadForm from '../features/posts/PostUploadForm'
 
 const CreatePost = () => {
   return (
-    <div>
-      Crete Post
-    </div>
+    <Box>
+      <Flex alignItems='center' justifyContent='center' mt='30'>  
+          <PostUploadForm/>
+      </Flex>
+    </Box>
   )
 }
 
