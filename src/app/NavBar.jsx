@@ -1,17 +1,19 @@
-import { Box, Button, Flex, Grid, GridItem, IconButton, Input, InputGroup, InputLeftElement, Link } from '@chakra-ui/react'
+import { Box, Flex, Grid, GridItem, IconButton, Image, Input, InputGroup, InputLeftElement, Link, Spacer, Text } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { BsSearch } from 'react-icons/bs'
 import { FaUserAlt } from 'react-icons/fa'
 import { AiFillPlusCircle } from 'react-icons/ai'
+import { BsLightningCharge } from 'react-icons/bs'
 
 const NavBar = () => {
 
     const [showSearchBox, setShowSearchBox] = useState(false)
+    const [showMenu,setShowMenu] = useState(false)
 
   return (
-    <Box>
-        <Grid  width='full'  templateColumns='repeat(3,1fr)' justifyItems='center' alignItems='center' py='5' px={['1','0','0']} backgroundColor='gray.50' diaplay={{base:showSearchBox ? 'none' : 'block', md:'block', lg:'block'}}>
+    <Box position='relative'>
+        <Grid width='full' templateColumns='repeat(3,1fr)' justifyItems='center' alignItems='center' py='5' px={['1','0','0']} backgroundColor='gray.50' diaplay={{base:showSearchBox ? 'none' : 'block', md:'block', lg:'block'}}>
             <GridItem>
                 <Link as={NavLink} to='/' fontSize='2xl' fontWeight='medium'>ShareArts</Link>
             </GridItem>
@@ -40,18 +42,22 @@ const NavBar = () => {
                             marginBottom='1'
                         />
                     </Link>
-                    <Link as={NavLink} to='/profile/890'>
+                    <Link as={NavLink} to='/explore'>
                         <IconButton 
                             aria-label='Show User Profile'
                             variant='unstyle'
-                            size='xl'
-                            icon={<FaUserAlt/>}
+                            size='2xl'
+                            icon={<BsLightningCharge/>}
                             marginBottom='1'
                         />
                     </Link>
-                    <Button size={['xs','sm', 'sm']} colorScheme='red'>
-                        Logout
-                    </Button>
+                    <Image
+                        src='../../../assets/images.jpg'
+                        boxSize='20px'
+                        borderRadius='50%'
+                        cursor='pointer'
+                        onClick={() => setShowMenu(prevState=>!prevState)}
+                    />
                 </Flex>
             </GridItem>
             <GridItem colSpan={3} width='full'>
@@ -61,6 +67,21 @@ const NavBar = () => {
                 </InputGroup>
             </GridItem>
         </Grid>
+        {showMenu && <Box width={{base:'30%', md:'15%'}} backgroundColor='white' boxShadow='md' position='absolute' top='14' right={{base:'2', md:'36'}} zIndex='10'>
+            <Link as={NavLink} to='/profile/123'>
+                <Flex alignItems='center' cursor='pointer' p='2' _hover={{backgroundColor:'gray.50'}} onClick={() => setShowMenu(prevState=>!prevState)}>
+                    <Text>Profile</Text>
+                    <Spacer/>
+                    <FaUserAlt/>
+                </Flex>
+            </Link>
+            <Flex alignItems='center' cursor='pointer' p='2' _hover={{backgroundColor:'gray.50'}}>
+                <Text>Logout</Text>
+                <Spacer/>
+                <FaUserAlt/>
+            </Flex>
+            
+        </Box>}
     </Box>
   )
 }
