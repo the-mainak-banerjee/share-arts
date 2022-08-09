@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import {
   Flex,
   Input,
@@ -15,6 +16,10 @@ import {
 } from "@chakra-ui/react";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import { auth, db } from "../../../services/Firebase";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+
 
 
 const CFaUserAlt = chakra(FaUserAlt);
@@ -23,15 +28,18 @@ const CMdEmail = chakra(MdEmail)
 
 export const Signup = ({ onToggle, setShowLogin }) => {
 
+  const [loading,setLoading]= useState(false)
   const [showPassword, setShowPassword] = useState(false);
   const [formData,setFormData] = useState({
-      fullName: '',
+      name: '',
       email: '',
       password: ''
   })
+  const navigate = useNavigate()
+  // const location = useLocation()
+  
 
-
-  const isValidName = formData.fullName.trim().length > 2
+  const isValidName = formData.name.trim().length > 2
   const isValidEmail =formData.email.match(
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   )
@@ -40,9 +48,46 @@ export const Signup = ({ onToggle, setShowLogin }) => {
 
   const isValidPassword = formData.password.length > 6
 
+  // Create a user doc in database
+  const createUser = async (docRef,data) => {
+    try{
+        await setDoc(doc(db,'users', `${docRef}`),data)
+    }catch(error){
+        console.log(error)
+    }
+  }
+
+  // Handle signup
+  const signUp = async (email,password,name) => {
+    setLoading(true)
+    try{
+      const userCredentials = await createUserWithEmailAndPassword(auth,email,password)
+      
+      await updateProfile(auth.currentUser, {displayName: name})
+      localStorage.setItem('share-art-tocken', userCredentials.user.accessToken)
+
+      createUser(userCredentials.user.uid, {
+          userId: userCredentials.user.uid,
+          name: name,
+          email: email,
+          followers: [],
+          following: [],
+          dateCreated: serverTimestamp()
+      })
+
+      navigate('/', {replace: true})
+
+    }catch(error){
+      console.log(error)
+    }finally{
+      setLoading(false)
+    }
+  }
 
   const handleSignup = (e) => {
       e.preventDefault()
+      signUp(formData.email,formData.password,formData.name)
+      // console.log(formData)
   }
 
   const handleShowClick = () => setShowPassword(!showPassword);
@@ -81,9 +126,9 @@ export const Signup = ({ onToggle, setShowLogin }) => {
                   <Input 
                   type="text" 
                   placeholder="full name" 
-                  isInvalid={!isValidName && formData.fullName}
+                  isInvalid={!isValidName && formData.name}
                   errorBorderColor='red.300'
-                  onChange={(e) => setFormData(prevState =>({...prevState, fullName:e.target.value}))}/>
+                  onChange={(e) => setFormData(prevState =>({...prevState, name:e.target.value}))}/>
                 </InputGroup>
               </FormControl>
               <FormControl>
@@ -132,7 +177,9 @@ export const Signup = ({ onToggle, setShowLogin }) => {
                 variant="solid"
                 colorScheme='blue'
                 width="full"
-                disabled={!isValidPassword || !isValidEmail}
+                disabled={!isValidPassword || !isValidEmail || loading}
+                isLoading={loading}
+                loadingText='Signing Up...'
                 onClick={handleSignup}
               >
                 Signup

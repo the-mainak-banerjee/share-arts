@@ -5,6 +5,10 @@ import { useSelector } from 'react-redux'
 
 const Home = () => {
   const posts = useSelector(state => state.posts)
+  const users = useSelector(state=> state.users)
+
+  console.log(users)
+  
   
   return (
    <Box as='section'>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom'
 import {
   Flex,
   Input,
@@ -11,10 +12,13 @@ import {
   FormControl,
   InputRightElement,
   Text,
-  FormHelperText
+  FormHelperText,
+  useToast
 } from "@chakra-ui/react";
 import { FaLock } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../services/Firebase";
 
 
 const CFaLock = chakra(FaLock);
@@ -27,6 +31,10 @@ export const Login = ({ setShowLogin, onToggle }) => {
       email: '',
       password: ''
   })
+  const [loading,setLoading] = useState(false)
+  const toast = useToast()
+  const navigate = useNavigate()
+ 
 
   
   const isValidEmail =formData.email.match(
@@ -38,8 +46,39 @@ export const Login = ({ setShowLogin, onToggle }) => {
   const isValidPassword = formData.password.length > 6
 
 
+  const logIn = async (email,password) => {
+    setLoading(true)
+
+    try{
+        const userCredentials = await signInWithEmailAndPassword(auth,email,password)
+        localStorage.setItem('share-art-tocken', userCredentials.user.accessToken)
+        navigate('/', {replace: true})
+    }catch(error){
+        if(error.code === 'auth/user-not-found'){
+            toast({
+                title: 'Invalid Login Credenials',
+                status: 'error'
+            })
+        }else if(error.code === 'auth/wrong-password'){
+            toast({
+                title: 'You entered wrong password.',
+                status: 'error'
+            })
+        }else{
+            toast({
+                title: 'An error occured.',
+                status: 'error'
+            })
+        }
+    }finally {
+        setLoading(false)
+    }
+}
+
+
   const handleLogin = (e) => {
       e.preventDefault()
+      logIn(formData.email, formData.password)
   }
 
   const handleShowClick = () => setShowPassword(!showPassword);
@@ -116,7 +155,9 @@ export const Login = ({ setShowLogin, onToggle }) => {
                 variant="solid"
                 colorScheme='blue'
                 width="full"
-                disabled={!isValidPassword || !isValidEmail}
+                isLoading={loading}
+                loadingText='Logging In...'
+                disabled={!isValidPassword || !isValidEmail || loading}
                 onClick={handleLogin}
               >
                 Login

@@ -15,7 +15,6 @@ const Auth = () => {
   const [showLogin,setShowLogin] = useState(false)
   const { isOpen, onToggle } = useDisclosure()
   
- 
 
   return (
     <Flex

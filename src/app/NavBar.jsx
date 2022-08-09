@@ -1,15 +1,30 @@
 import { Box, Flex, Grid, GridItem, IconButton, Image, Input, InputGroup, InputLeftElement, Link, Spacer, Text } from '@chakra-ui/react'
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { BsSearch } from 'react-icons/bs'
 import { FaUserAlt } from 'react-icons/fa'
 import { AiFillPlusCircle } from 'react-icons/ai'
 import { BsLightningCharge } from 'react-icons/bs'
+import { logOut } from '../features/users/usersSlice'
+import { useDispatch } from "react-redux";
+import { signOut } from 'firebase/auth'
+import { auth } from '../services/Firebase'
+
 
 const NavBar = () => {
 
     const [showSearchBox, setShowSearchBox] = useState(false)
     const [showMenu,setShowMenu] = useState(false)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const handleLogout = async () => {
+        await signOut(auth)
+        dispatch(logOut())
+        navigate('/auth', {replace: true})
+    }
+
+
 
   return (
     <Box position='relative'>
@@ -75,7 +90,7 @@ const NavBar = () => {
                     <FaUserAlt/>
                 </Flex>
             </Link>
-            <Flex alignItems='center' cursor='pointer' p='2' _hover={{backgroundColor:'gray.50'}}>
+            <Flex alignItems='center' cursor='pointer' p='2' _hover={{backgroundColor:'gray.50'}} onClick={handleLogout}>
                 <Text>Logout</Text>
                 <Spacer/>
                 <FaUserAlt/>
