@@ -1,4 +1,4 @@
-import { Avatar, Box, Flex, Grid, GridItem, IconButton, Image, Input, InputGroup, InputLeftElement, Link, Spacer, Text } from '@chakra-ui/react'
+import { Avatar, Box, Flex, Grid, GridItem, IconButton, Input, InputGroup, InputLeftElement, Link, Spacer, Text } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { NavLink, useNavigate, useLocation } from 'react-router-dom'
 import { BsSearch } from 'react-icons/bs'

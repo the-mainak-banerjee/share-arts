@@ -31,7 +31,7 @@ const PostEditModal = ({ isOpen, onClose, post }) => {
                 </ModalHeader>
                 <ModalCloseButton/>
                 <ModalBody>
-                    <Textarea placeholder='Add caption here' value={editablePostCaption} onChange={(e) => setEditablePostCaption(e.target.value)}/>
+                    <Textarea autoFocus={true} placeholder='Add caption here' value={editablePostCaption} onChange={(e) => setEditablePostCaption(e.target.value)}/>
                 </ModalBody>
                 <ModalFooter>
                     <Button 
@@ -39,7 +39,7 @@ const PostEditModal = ({ isOpen, onClose, post }) => {
                         mr='3' 
                         onClick={handleEditForm}
                         disabled={!editablePostCaption}
-                        loading={loading}
+                        isLoading={loading}
                         loadingText='Editing Post...'
                     >Save Post</Button>
                     <Button variant='ghost' onClick={onClose}>Cancel</Button>

@@ -57,7 +57,7 @@ const PostContainer = ({post, allUsers, currUser}) => {
         <Divider my='2'/>
         <Flex my='2' gap='2' px='2'>
             <Input type='text' placeholder='add a comment'/>
-            <Button>Post</Button>
+            <Button colorScheme='blue'>Post</Button>
         </Flex>
         <PostEditModal
          isOpen={isOpen}

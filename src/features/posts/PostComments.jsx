@@ -1,5 +1,5 @@
 import React from 'react'
-import { Avatar, Box, Flex, Image, Link, Spacer, Text } from '@chakra-ui/react'
+import { Avatar, Box, Flex, Link, Spacer, Text } from '@chakra-ui/react'
 import { BsTrash } from 'react-icons/bs'
 
 

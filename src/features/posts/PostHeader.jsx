@@ -1,5 +1,5 @@
 import React from 'react'
-import { Avatar, Box, Flex, Image, Spacer, Text, useToast } from '@chakra-ui/react'
+import { Avatar, Box, Flex, Spacer, Text, useToast } from '@chakra-ui/react'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { useState } from 'react'
 import { usePost } from '../../hooks/usePost'
@@ -14,6 +14,13 @@ const PostHeader = ({post, showAction, setShowAction, postOwnerDetails, isOwner,
   // Delete post handler
   const handlePostDelete = () => {
     deletePost(setLoading, toast)
+    setShowAction(false)
+  }
+
+  // Edit post handler
+  const handlePostEdit = () => {
+    onOpen()
+    setShowAction(false)
   }
 
 
@@ -29,7 +36,7 @@ const PostHeader = ({post, showAction, setShowAction, postOwnerDetails, isOwner,
         </Flex>
         
         {showAction && <Box backgroundColor='#f4f4f4' boxShadow='md' position='absolute' top='10' right='2' zIndex='10'>
-            <Text mb='2' px='4' py='2'  cursor='pointer' _hover={{backgroundColor:'white'}} onClick={onOpen}>Edit Post</Text>
+            <Text mb='2' px='4' py='2'  cursor='pointer' _hover={{backgroundColor:'white'}} onClick={handlePostEdit}>Edit Post</Text>
             {loading 
               ? (
                 <Text px='4' py='2' backgroundColor='gray.50'>Deleting Post...</Text>
