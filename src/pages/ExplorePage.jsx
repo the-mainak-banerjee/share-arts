@@ -2,9 +2,10 @@ import React from 'react'
 import { Box, Flex } from '@chakra-ui/react'
 import PostContainer from '../features/posts/PostContainer'
 import { useSelector } from 'react-redux'
+import { selectAllPosts } from '../features/posts/postsSlice'
 
 const Explore = () => {
-  const posts = useSelector(state => state.posts)
+  const posts = useSelector(selectAllPosts)
   
   return (
    <Box as='section'>

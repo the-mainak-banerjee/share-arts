@@ -1,22 +1,20 @@
 import React from 'react'
-import { Box, Flex, Image, Link, Spacer, Text } from '@chakra-ui/react'
+import { Avatar, Box, Flex, Image, Link, Spacer, Text } from '@chakra-ui/react'
 import { BsTrash } from 'react-icons/bs'
 
 
 const PostComments = ({ post, showAllComments ,setShowAllComments}) => {
   return (
    <>
-    {post.comments.length>0 && <Box my='2'>
+    {post.comments.length>0 && <Box my='2' px='2'>
             {showAllComments 
             ?(
                 <>
                     {post.comments?.map(comment => {
                         return(
                             <Flex mt='2' gap='2' alignItems='center' key={comment.id}>
-                                <Image
-                                    src='../../../assets/images.jpg'
-                                    boxSize='25px'
-                                    borderRadius='50%'
+                                <Avatar
+                                    size='xs'
                                 />
                                 <Link to='/' fontWeight='bold'>UserName</Link>
                                 <Text>{comment.text}</Text>

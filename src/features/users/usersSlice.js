@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     userId: null,
-    userTocken: null
+    userTocken: null,
+    allUsers: null
 }
 
 export const usersSlice = createSlice({
@@ -19,9 +20,15 @@ export const usersSlice = createSlice({
             localStorage.removeItem('share-art-tocken')
             state.userTocken = null
             state.userId = null
+        },
+        setAllUsers(state,action){
+            state.allUsers = action.payload;
         }
     }
 })
 
-export const { setUser, setUserTocken, logOut } = usersSlice.actions
+export const { setUser, setUserTocken, logOut, setAllUsers } = usersSlice.actions
 export default usersSlice.reducer
+
+export const selectSignedInUser = state => ({userId: state.users.userId, userTocken:state.users.userTocken})
+export const seletAllUsers = state => state.users.allUsers

@@ -9,9 +9,11 @@ import Auth from "./pages/Auth";
 import { useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useEffect } from "react";
-import { auth } from "./services/Firebase";
+import { auth, db } from "./services/Firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { setUser, setUserTocken } from './features/users/usersSlice'
+import { setUser, setUserTocken, setAllUsers } from './features/users/usersSlice'
+import formatDate from "./utils/FormatDate";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 
 
 function App() {
@@ -20,9 +22,24 @@ function App() {
   const dispatch = useDispatch()
 
 
+  // Get all users data
+  useEffect(() => {
+    const unsub = onSnapshot(query(collection(db,'users'),orderBy('dateCreated', 'desc')) , (querySnapshot) => {
+      const allUsers = querySnapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+          dateCreated: formatDate(doc.data().dateCreated)
+      }))
+      dispatch(setAllUsers(allUsers))
+  })
+
+  return () => unsub()
+  })
+
+
+  // Get currently signed in user data
   useEffect(() => {
     const unSub = onAuthStateChanged(auth, (currentUser) => {
-      console.log(currentUser)
       if(currentUser){
        dispatch(setUser(currentUser.uid))
        dispatch(setUserTocken(currentUser.accessToken))
