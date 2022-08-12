@@ -32,3 +32,4 @@ export default usersSlice.reducer
 
 export const selectSignedInUser = state => ({userId: state.users.userId, userTocken:state.users.userTocken})
 export const seletAllUsers = state => state.users.allUsers
+export const selectUserDetails = (state,userId) => state.users.allUsers?.find(user => user.id === userId)

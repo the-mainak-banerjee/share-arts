@@ -1,8 +1,9 @@
 import React from 'react'
-import { Avatar, Box, Flex, Spacer, Text, useToast } from '@chakra-ui/react'
+import { Avatar, Box, Flex, Link, Spacer, Text, useToast } from '@chakra-ui/react'
 import { BsThreeDotsVertical } from 'react-icons/bs'
 import { useState } from 'react'
 import { usePost } from '../../hooks/usePost'
+import { Link as ReachLink } from 'react-router-dom'
 
 const PostHeader = ({post, showAction, setShowAction, postOwnerDetails, isOwner, onOpen}) => {
 
@@ -30,7 +31,9 @@ const PostHeader = ({post, showAction, setShowAction, postOwnerDetails, isOwner,
             <Avatar
               size='sm'
             />
-            <Text fontWeight='medium' fontSize='xl'>{postOwnerDetails?.name}</Text>
+            <Link as={ReachLink} to={`/profile/${postOwnerDetails?.id}`}>
+              <Text fontWeight='medium' fontSize='xl'>{postOwnerDetails?.name}</Text>
+            </Link>
             <Spacer/>
             {isOwner && <BsThreeDotsVertical cursor='pointer' onClick={() => setShowAction(prevState => !prevState)}/>}
         </Flex>

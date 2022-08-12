@@ -6,15 +6,17 @@ import { FaUserAlt } from 'react-icons/fa'
 import { AiFillPlusCircle, AiOutlinePlusCircle } from 'react-icons/ai'
 import { BsLightningCharge } from 'react-icons/bs'
 import { logOut } from '../features/users/usersSlice'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signOut } from 'firebase/auth'
 import { auth } from '../services/Firebase'
+import { selectSignedInUser } from '../features/users/usersSlice'
 
 
 const NavBar = () => {
 
     const [showSearchBox, setShowSearchBox] = useState(false)
     const [showMenu,setShowMenu] = useState(false)
+    const currUser = useSelector(selectSignedInUser)
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const { pathname } = useLocation()
@@ -29,7 +31,7 @@ const NavBar = () => {
 
 
   return (
-    <Box position='relative' boxShadow='lg'>
+    <Box position='relative' boxShadow='lg' backgroundColor='white'>
         <Grid width='full' templateColumns='repeat(3,1fr)' justifyItems='center' position='fixed' zIndex='10' alignItems='center' py='5' px={['1','0','0']} backgroundColor='white' diaplay={{base:showSearchBox ? 'none' : 'block', md:'block', lg:'block'}}>
             <GridItem>
                 <Link as={NavLink} to='/' fontSize='2xl' fontWeight='medium' color='blue.500'>ShareArts</Link>
@@ -90,7 +92,7 @@ const NavBar = () => {
             } */}
         </Grid>
         {showMenu && <Box width={{base:'30%', md:'15%'}} backgroundColor='white' boxShadow='md' position='absolute' top='14' right={{base:'2', md:'36'}} zIndex='10'>
-            <Link as={NavLink} to='/profile/123'>
+            <Link as={NavLink} to={`/profile/${currUser.userId}`}>
                 <Flex alignItems='center' cursor='pointer' p='2' _hover={{backgroundColor:'gray.50'}} onClick={() => setShowMenu(prevState=>!prevState)}>
                     <Text>Profile</Text>
                     <Spacer/>

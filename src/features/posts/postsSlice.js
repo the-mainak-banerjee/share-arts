@@ -49,7 +49,9 @@ import { createSlice } from "@reduxjs/toolkit";
 // ]
 
 const initialState = {
-    allPosts:[]
+    allPosts:[],
+    savedPosts:[],
+    userPosts: []
 }
 
 
@@ -59,15 +61,20 @@ export const postSlice = createSlice({
     reducers: {
         setAllPosts(state,action){
             state.allPosts = action.payload
+        },
+        setSavedPosts(state,action){
+            state.savedPosts = action.payload
+        },
+        setUserPosts(state,action){
+            state.userPosts = action.payload
         }
     }
 })
 
-export const {setAllPosts} = postSlice.actions
+export const {setAllPosts,setSavedPosts,setUserPosts} = postSlice.actions
 
 export default postSlice.reducer
 
 export const selectAllPosts = state => state.posts.allPosts
-
-
-// a7kLVDoGOBTAXAw7DXzJB94plSG3
+export const selectSavedPosts = state => state.posts.savedPosts
+export const selectUserPosts = state => state.posts.userPosts

@@ -1,12 +1,13 @@
 import { Box, Button, Link, Text } from '@chakra-ui/react'
 import React from 'react'
+import  { Link as ReachLink } from 'react-router-dom'
 
 const PostCaption = ({ post , showFullCaption, setShowFullCaption, postOwnerDetails}) => {
   return (
     <>
         <Box px='2'>
            <Text>
-               <Link to='/' fontWeight='bold'>{postOwnerDetails?.name}</Link>{' '}
+               <Link as={ReachLink} to={`/profile/${postOwnerDetails?.id}`} fontWeight='bold'>{postOwnerDetails?.name}</Link>{' '}
                {post.caption.length < 150 ? (
                    post.caption
                ) : (
