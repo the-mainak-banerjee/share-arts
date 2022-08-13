@@ -89,7 +89,7 @@ const PostUploadForm = ({currentUser, currentUserDetails}) => {
             <Avatar
               size='sm'
             />
-            <Text fontWeight='medium' fontSize='xl'>{currentUserDetails.name}</Text>
+            <Text fontWeight='medium' fontSize='xl'>{currentUserDetails?.name}</Text>
         </Flex>
         <Textarea placeholder='Add Caption Here...' outline='0' border='0' value={captionInput} onChange={(e) => setCaptionInput(e.target.value)}/>
         <Box mt='2' border='2px' borderColor='gray.300'>

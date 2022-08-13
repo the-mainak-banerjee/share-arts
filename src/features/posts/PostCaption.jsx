@@ -7,7 +7,7 @@ const PostCaption = ({ post , showFullCaption, setShowFullCaption, postOwnerDeta
     <>
         <Box px='2'>
            <Text>
-               <Link as={ReachLink} to={`/profile/${postOwnerDetails?.id}`} fontWeight='bold'>{postOwnerDetails?.name}</Link>{' '}
+               <Link as={ReachLink} to={`/profile/${postOwnerDetails?.id}/posts`} fontWeight='bold'>{postOwnerDetails?.name}</Link>{' '}
                {post.caption.length < 150 ? (
                    post.caption
                ) : (

@@ -7,14 +7,16 @@ import { seletAllUsers, selectSignedInUser } from '../features/users/usersSlice'
 import { collection, onSnapshot, query, orderBy } from 'firebase/firestore'
 import { db } from '../services/Firebase'
 import formatDate from '../utils/FormatDate'
+import usePageTitle from '../hooks/usePageTitle'
+import PostSkeleton from '../components/skeletons/PostSkeleton'
 
 
 const Home = () => {
+  usePageTitle('ShareArts')
   const posts = useSelector(selectAllPosts)
   const allUsers = useSelector(seletAllUsers)
   const currUser = useSelector(selectSignedInUser)
   const dispatch = useDispatch()
-
 
 
   // Get all posts data from database
@@ -36,16 +38,33 @@ const Home = () => {
   return (
    <Box as='section' backgroundColor='#f8f8f8'>
     <Flex alignItems='center' justifyContent='center' flexDirection='column' gap='6' pt='32'>
-      {posts.map(post => {
-        return (
-          <PostContainer 
-            key={post.id}
-            post={post}
-            allUsers={allUsers}
-            currUser = {currUser}
-          />
+      {posts?.length > 0
+        ? (
+            <>
+              {posts.map(post => {
+                return (
+                  <PostContainer 
+                    key={post.id}
+                    post={post}
+                    allUsers={allUsers}
+                    currUser = {currUser}
+                  />
+                )
+              })}
+            </>
+        ) : (
+            <>
+              {Array.of(1,2,3,4,5).map(item => {
+                return (
+                  <PostSkeleton
+                    key={item}
+                  />
+                )
+              })}
+            </>
         )
-      })}
+      }
+      
     </Flex>
    </Box>
   )

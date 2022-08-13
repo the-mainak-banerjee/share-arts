@@ -29,7 +29,7 @@ const PostComments = ({ comment,post, currUserId }) => {
         />
         <Flex flexDirection='column'>
           <Text>
-            <Link as={ReachLink} to={`/profile/${commentOwner?.id}`} fontWeight='bold'>{commentOwner?.name}</Link>{' '}
+            <Link as={ReachLink} to={`/profile/${commentOwner?.id}/posts`} fontWeight='bold'>{commentOwner?.name}</Link>{' '}
             {comment.content.length < 150 ? (
                 comment.content
             ) : (

@@ -19,7 +19,7 @@ const UserCard = ({idOfUser}) => {
     <Flex gap='2'>
         <Avatar/>
         <Box>
-            <Heading size='md'><Link as={ReachLink} to={`/profile/${idOfUser}`}>{userDetails.name}</Link></Heading>
+            <Heading size='md'><Link as={ReachLink} to={`/profile/${idOfUser}/posts`}>{userDetails.name}</Link></Heading>
             <Flex alignItems='center' gap='2' my='1'>
               <Text fontWeight='medium'>{userDetails?.following?.length} Following</Text>
               <Text fontWeight='medium'>{userDetails?.followers?.length} {userDetails?.followers?.length > 1 ? 'Followers' : 'Follower'}</Text>

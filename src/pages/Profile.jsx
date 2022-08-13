@@ -5,6 +5,7 @@ import { Outlet, useParams, Link as ReachLink } from 'react-router-dom'
 import { selectSignedInUser, selectUserDetails } from '../features/users/usersSlice'
 import { selectUserPosts } from '../features/posts/postsSlice'
 import { useFollowAction } from '../hooks/useFollowActions'
+import usePageTitle from '../hooks/usePageTitle'
 
 const Profile = () => {
   const params = useParams()
@@ -13,6 +14,7 @@ const Profile = () => {
   const currUserDetails = useSelector(state => selectUserDetails(state,currUser?.userId))
   const userPosts = useSelector(selectUserPosts)
   const { handleFollow, loading } = useFollowAction(currUser.userId)
+  usePageTitle(`ShareArts-Profile`)
 
   
 

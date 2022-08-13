@@ -1,4 +1,4 @@
-import { Box, Container, Divider, Image, Text, useDisclosure} from '@chakra-ui/react'
+import { Box, Container, Divider, Image, Skeleton, Text, useDisclosure} from '@chakra-ui/react'
 import React, { useState } from 'react'
 import PostHeader from './PostHeader'
 import PostActions from './PostActions'
@@ -18,70 +18,73 @@ const PostContainer = ({post, allUsers, currUser}) => {
     
 
   return (
-    <Container px='0' py='4' maxW='xl' backgroundColor='white' border='1px' borderColor='blue.300' borderRadius='lg' boxShadow='lg' position='relative'>
-        <PostHeader
-            showAction={showAction}
-            setShowAction={setShowAction}
-            isOwner={isOwner}
-            postOwnerDetails={postOwnerDetails}
-            post={post}
-            onOpen={onOpen}
-        />
+    <> 
+        <Container px='0' py='4' maxW='xl' backgroundColor='white' border='1px' borderColor='blue.300' borderRadius='lg' boxShadow='lg' position='relative'>
+            <PostHeader
+                showAction={showAction}
+                setShowAction={setShowAction}
+                isOwner={isOwner}
+                postOwnerDetails={postOwnerDetails}
+                post={post}
+                onOpen={onOpen}
+            />
 
-        {post?.imageUrl && <Box position='relative' mt='4' mb='2' width='full' height='lg' border='1px' borderColor='#f4f4f4'>
-            <Image
-                src={post.imageUrl}
-                boxSize='full'
-            /> 
-        </Box>}
+            {post?.imageUrl && <Box position='relative' mt='4' mb='2' width='full' height='lg' border='1px' borderColor='#f4f4f4'>
+                <Image
+                    src={post.imageUrl}
+                    boxSize='full'
+                    fallback={<Skeleton height='lg'/>}
+                /> 
+            </Box>}
 
-        <PostActions 
-            post={post}
-            currUserId ={currUser.userId}
-            setShowAllComments={setShowAllComments}
-        />
+            <PostActions 
+                post={post}
+                currUserId ={currUser.userId}
+                setShowAllComments={setShowAllComments}
+            />
 
-        <PostCaption
-            post={post}
-            showFullCaption={showFullCaption}
-            setShowFullCaption= {setShowFullCaption}
-            postOwnerDetails = {postOwnerDetails}    
-        />
+            <PostCaption
+                post={post}
+                showFullCaption={showFullCaption}
+                setShowFullCaption= {setShowFullCaption}
+                postOwnerDetails = {postOwnerDetails}    
+            />
 
-        {post?.comments?.length>0 && <Box my='2' px='2'>
-            {showAllComments
-                ?(
-                    post?.comments?.map(comment => {
-                        return(
-                            <PostComments
-                                comment={comment}
-                                key={comment.id}
-                                post={post}
-                                currUserId ={currUser.userId}
-                            />
-                        )
-                    })
-                ) : (
-                    <>
-                        <Text mt='2' cursor='pointer' onClick={() => setShowAllComments(true)}>{post?.comments?.length > 1 ? `Show All ${post?.comments?.length} Comments` : `Show Comment`}</Text>
-                    </>
-                )
+            {post?.comments?.length>0 && <Box my='2' px='2'>
+                {showAllComments
+                    ?(
+                        post?.comments?.map(comment => {
+                            return(
+                                <PostComments
+                                    comment={comment}
+                                    key={comment.id}
+                                    post={post}
+                                    currUserId ={currUser.userId}
+                                />
+                            )
+                        })
+                    ) : (
+                        <>
+                            <Text mt='2' cursor='pointer' onClick={() => setShowAllComments(true)}>{post?.comments?.length > 1 ? `Show All ${post?.comments?.length} Comments` : `Show Comment`}</Text>
+                        </>
+                    )
 
+                }
+            </Box>
             }
-        </Box>
-        }
-       
-        <Divider my='2'/>
-        <PostCommentForm
+        
+            <Divider my='2'/>
+            <PostCommentForm
+                post={post}
+                currUserId ={currUser.userId}
+            />
+            <PostEditModal
+            isOpen={isOpen}
+            onClose={onClose}
             post={post}
-            currUserId ={currUser.userId}
-        />
-        <PostEditModal
-         isOpen={isOpen}
-         onClose={onClose}
-         post={post}
-        />
-    </Container>
+            />
+        </Container>
+    </>
   )
 }
 

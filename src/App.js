@@ -16,6 +16,7 @@ import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import Posts from "./pages/profile/Posts";
 import Followers from "./pages/profile/Followers";
 import Following from "./pages/profile/Following";
+import ScrollToTop from "./utils/ScrollToTop";
 
 
 function App() {
@@ -55,7 +56,7 @@ function App() {
 
 
   return (
-    <>
+    <ScrollToTop>
       {location.pathname !== '/auth' && <NavBar/> }
       <Routes>
         <Route path='/' element={<Home/>}/>
@@ -69,7 +70,7 @@ function App() {
         </Route>
         <Route path='/createPost' element={<CreatePost/>}/>
       </Routes>
-    </>
+    </ScrollToTop>
   );
 }
 
