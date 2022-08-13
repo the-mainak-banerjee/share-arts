@@ -13,6 +13,9 @@ import { onAuthStateChanged } from "firebase/auth";
 import { setUser, setUserTocken, setAllUsers } from './features/users/usersSlice'
 import formatDate from "./utils/FormatDate";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import Posts from "./pages/profile/Posts";
+import Followers from "./pages/profile/Followers";
+import Following from "./pages/profile/Following";
 
 
 function App() {
@@ -58,7 +61,12 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/explore' element={<Explore/>}/>
         <Route path='/auth' element={<Auth/>}/>
-        <Route path='/profile/:userId' element={<Profile/>}/>
+        <Route path='/profile/:userId' element={<Profile/>}>
+          <Route index element={<Posts/>}/>
+          <Route path='posts' element={<Posts/>}/>
+          <Route path='followers' element={<Followers/>}/>
+          <Route path='following' element={<Following/>}/>
+        </Route>
         <Route path='/createPost' element={<CreatePost/>}/>
       </Routes>
     </>

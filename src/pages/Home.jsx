@@ -15,6 +15,9 @@ const Home = () => {
   const currUser = useSelector(selectSignedInUser)
   const dispatch = useDispatch()
 
+
+
+  // Get all posts data from database
   useEffect(() => {
     const unsub = onSnapshot(query(collection(db,'posts'),orderBy('createdAt', 'desc')) , (querySnapshot) => {
       const allPosts = querySnapshot.docs.map((doc) => ({
@@ -27,6 +30,7 @@ const Home = () => {
 
   return () => unsub()
   }, [dispatch])
+
   
   
   return (

@@ -92,7 +92,7 @@ const NavBar = () => {
             } */}
         </Grid>
         {showMenu && <Box width={{base:'30%', md:'15%'}} backgroundColor='white' boxShadow='md' position='absolute' top='14' right={{base:'2', md:'36'}} zIndex='10'>
-            <Link as={NavLink} to={`/profile/${currUser.userId}`}>
+            <Link as={NavLink} to={`/profile/${currUser.userId}/posts`}>
                 <Flex alignItems='center' cursor='pointer' p='2' _hover={{backgroundColor:'gray.50'}} onClick={() => setShowMenu(prevState=>!prevState)}>
                     <Text>Profile</Text>
                     <Spacer/>

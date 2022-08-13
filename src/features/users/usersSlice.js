@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     userId: null,
     userTocken: null,
-    allUsers: null
+    allUsers: null,
 }
 
 export const usersSlice = createSlice({
@@ -23,7 +23,7 @@ export const usersSlice = createSlice({
         },
         setAllUsers(state,action){
             state.allUsers = action.payload;
-        }
+        },
     }
 })
 
