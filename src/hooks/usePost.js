@@ -19,6 +19,7 @@ export const usePost = (postId) => {
                 status: 'error',
                 position: 'bottom-left'
             })
+            console.log(error)
         }finally{
           setLoading(false)
         }

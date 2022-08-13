@@ -34,8 +34,8 @@ const PostUploadForm = ({currentUser, currentUserDetails}) => {
         imageUrl: image? image : '',
         createdBy: currentUser,
         likes: [],
-        comments: [],
         saves: [],
+        comments: [],
         createdAt: serverTimestamp()
       })
     }catch(error){

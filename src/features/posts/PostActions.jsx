@@ -6,7 +6,7 @@ import { BsBookmark, BsBookmarkFill } from 'react-icons/bs'
 import { useState } from 'react'
 import { usePost } from '../../hooks/usePost'
 
-const PostActions = ({ post, currUserId }) => {
+const PostActions = ({ post, currUserId, setShowAllComments }) => {
   const [likeLoading, setLikeLoading] = useState(false)
   const [saveLoading, setSaveLoading] = useState(false)
   const toast = useToast()
@@ -59,7 +59,7 @@ const PostActions = ({ post, currUserId }) => {
               </>
             )
           }
-            <FaRegComment cursor='pointer' size='25px'/>
+            <FaRegComment cursor='pointer' size='25px' onClick={() => setShowAllComments(prevState => !prevState)}/>
 
             <Spacer/>
 

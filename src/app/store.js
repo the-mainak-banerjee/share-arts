@@ -5,6 +5,6 @@ import userReducer from '../features/users/usersSlice'
 export default configureStore({
     reducer:{
         posts: postReducer,
-        users: userReducer
+        users: userReducer,
     },
 })
