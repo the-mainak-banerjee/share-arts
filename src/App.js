@@ -20,6 +20,7 @@ import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import FriendsPost from "./pages/FriendsPost";
 import PrivateRoutes from "./components/protectedRoutes/PrivateRoutes";
 import RestrictedRoute from "./components/protectedRoutes/RestrictedRoute";
+import FourOFour from "./pages/FourOFour";
 
 
 function App() {
@@ -76,6 +77,7 @@ function App() {
           <Route path='/createPost' element={<CreatePost/>}/>
           <Route path='/friendsPost' element={<FriendsPost/>}/>
         </Route>
+        <Route path='*' element={<FourOFour/>}/>
       </Routes>
       {location.pathname !== '/auth' && <Footer/> }
     </ScrollToTop>
