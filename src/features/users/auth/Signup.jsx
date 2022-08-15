@@ -72,6 +72,8 @@ export const Signup = ({ onToggle, setShowLogin }) => {
           email: email,
           followers: [],
           following: [],
+          bio:'',
+          profileImage: '',
           dateCreated: serverTimestamp()
       })
 
@@ -173,7 +175,7 @@ export const Signup = ({ onToggle, setShowLogin }) => {
                 </FormHelperText>
               </FormControl>
               <Button
-                borderRadius={0}
+                borderRadius='md'
                 variant="solid"
                 colorScheme='blue'
                 width="full"
