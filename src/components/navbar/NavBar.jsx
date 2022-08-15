@@ -37,8 +37,8 @@ const NavBar = () => {
 
     return(
         <>
-            <Box boxShadow='lg' width='100%' py='6' position='fixed' zIndex='10' backgroundColor='#f8f8f8'>
-                <Flex as='nav' align='center' justifyContent='space-around' gap='4' px={[4,10,36]}>
+            <Box w='100vw' boxShadow='lg' py='6' zIndex='10' backgroundColor='#f8f8f8' position='fixed'>
+                <Flex as='nav' align='center' justifyContent='space-around' gap='4' px={[10,10,36]}>
 
                     <Text fontSize='2xl' fontWeight='medium' color='blue.500'><Link as={NavLink} to='/'>ShareArts</Link></Text>
                     <Box visibility={{base:'hidden', md:'visible'}} position='relative' justifyContent='center' w='30%'>
@@ -73,7 +73,6 @@ const NavBar = () => {
                        ): (
                             <>
                                 <Button colorScheme='blue' variant='outline' onClick={() => navigate('/auth', {state:{from: location, logIn:true}})}>LogIn</Button>
-                                <Button colorScheme='blue' onClick={() => navigate('/auth', {state:{from: location}})}>SignUp</Button>
                             </>
                        )
                     }
