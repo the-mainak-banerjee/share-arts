@@ -16,7 +16,6 @@ const PostContainer = ({post, allUsers, currUser}) => {
     const postOwnerDetails = allUsers?.find(user => user.id === post.createdBy)
     const isOwner = currUser?.userId === post.createdBy
     
-
   return (
     <> 
         <Container px='0' py='4' maxW='xl' backgroundColor='white' border='1px' borderColor='blue.300' borderRadius='lg' boxShadow='lg' position='relative'>

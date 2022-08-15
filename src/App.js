@@ -1,10 +1,14 @@
 import { Route, Routes } from "react-router-dom";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/navbar/NavBar";
 import CreatePost from "./pages/CreatePost";
-import Explore from "./pages/ExplorePage";
 import Home from "./pages/Home";
-import Profile from "./pages/Profile";
+import Profile from "./pages/profile/Profile";
 import Auth from "./pages/Auth";
+import Posts from "./pages/profile/Posts";
+import Followers from "./pages/profile/Followers";
+import Following from "./pages/profile/Following";
+import ScrollToTop from "./utils/ScrollToTop";
+import Footer from "./components/Footer";
 import { useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { useEffect } from "react";
@@ -13,10 +17,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { setUser, setUserTocken, setAllUsers } from './features/users/usersSlice'
 import formatDate from "./utils/FormatDate";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
-import Posts from "./pages/profile/Posts";
-import Followers from "./pages/profile/Followers";
-import Following from "./pages/profile/Following";
-import ScrollToTop from "./utils/ScrollToTop";
+import FriendsPost from "./pages/FriendsPost";
 
 
 function App() {
@@ -60,7 +61,7 @@ function App() {
       {location.pathname !== '/auth' && <NavBar/> }
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path='/explore' element={<Explore/>}/>
+        <Route path='/friendsPost' element={<FriendsPost/>}/>
         <Route path='/auth' element={<Auth/>}/>
         <Route path='/profile/:userId' element={<Profile/>}>
           <Route index element={<Posts/>}/>
@@ -70,6 +71,7 @@ function App() {
         </Route>
         <Route path='/createPost' element={<CreatePost/>}/>
       </Routes>
+      {location.pathname !== '/auth' && <Footer/> }
     </ScrollToTop>
   );
 }

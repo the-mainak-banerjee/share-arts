@@ -29,18 +29,19 @@ const EditProfileCard = ({ isOpen, onClose, currUserDetails, updateType }) => {
             }
             updateUser(currUserDetails.id, data, setLoading)
             updateUserProfile({displayName: nameInput})
+            if(bioInput !== currUserDetails?.bio){
+                data = {
+                    name: nameInput,
+                    bio: bioInput
+                }
+                updateUser(currUserDetails.id, data, setLoading)
+                updateUserProfile({displayName: nameInput})
+            }
         }else if(bioInput !== currUserDetails?.bio){
             data = {
                 bio: bioInput
             }
             updateUser(currUserDetails.id, data, setLoading)
-        }else if(bioInput !== currUserDetails?.bio && nameInput !== currUserDetails?.name){
-            data = {
-                name: nameInput,
-                bio: bioInput
-            }
-            updateUser(currUserDetails.id, data, setLoading)
-            updateUserProfile({displayName: nameInput})
         }
         onClose()
     }
@@ -122,8 +123,8 @@ const EditProfileCard = ({ isOpen, onClose, currUserDetails, updateType }) => {
                     </>
                 </ModalBody>
                 <ModalFooter>
-                    {updateType === 'details' && <Button disabled={(nameInput===currUserDetails?.name && bioInput===currUserDetails?.bio) || loading} onClick={handleProfileUpdate}>Save Profile</Button>}
-                    {updateType === 'photo' && <Button disabled={!uploadedImage || loading} isLoading={loading} loadingText='Uploading Photo...' onClick={handlePhotoUpdate}>Save Profile</Button>}   
+                    {updateType === 'details' && <Button colorScheme='blue' disabled={(nameInput===currUserDetails?.name && bioInput===currUserDetails?.bio) || !nameInput || loading} onClick={handleProfileUpdate}>Save Profile</Button>}
+                    {updateType === 'photo' && <Button colorScheme='blue' disabled={!uploadedImage || loading} isLoading={loading} loadingText='Uploading Photo...' onClick={handlePhotoUpdate}>Save Profile</Button>}   
                     <Button onClick={handleClose} ml='4'>Close</Button>
                 </ModalFooter>
             </ModalContent>

@@ -2,11 +2,12 @@ import { Avatar, Box, Button, Flex, Heading, Text, Link, useDisclosure } from '@
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Outlet, useParams, Link as ReachLink } from 'react-router-dom'
-import { selectSignedInUser, selectUserDetails } from '../features/users/usersSlice'
-import { selectUserPosts } from '../features/posts/postsSlice'
-import { useFollowAction } from '../hooks/useFollowActions'
-import usePageTitle from '../hooks/usePageTitle'
-import EditProfileCard from './profile/EditProfileCard'
+import { selectSignedInUser, selectUserDetails } from '../../features/users/usersSlice'
+import { selectUserPosts } from '../../features/posts/postsSlice'
+import { useFollowAction } from '../../hooks/useFollowActions'
+import usePageTitle from '../../hooks/usePageTitle'
+import EditProfileCard from '../../components/profile/EditProfileCard'
+
 
 
 const Profile = () => {
@@ -33,7 +34,7 @@ const Profile = () => {
 
   return (
     <>
-      <Box as='section' pt='32'>
+      <Box as='section' pt='32' minHeight='100vh'>
         <Box px='2' py='6' mb='10' maxW='xl' mx='auto' border='1px' borderColor='blue.300' borderRadius='lg' boxShadow='lg' backgroundColor='white'>
           <Flex alignItems='center' gap='6'>
               <Avatar size='xl' cursor='pointer' onClick={handlePhotoUpdate} src={userDetails?.profileImage}/>

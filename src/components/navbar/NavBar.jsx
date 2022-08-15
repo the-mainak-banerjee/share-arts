@@ -1,16 +1,15 @@
-import { Avatar, Box, Flex, Icon, Link, Spacer, Text } from '@chakra-ui/react'
+import { Avatar, Box, Button, Flex, Icon, Link, Spacer, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
-import { NavLink, useNavigate, useLocation } from 'react-router-dom'
-import { BsSearch } from 'react-icons/bs'
+import { NavLink, Link as ReachLink, useNavigate, useLocation } from 'react-router-dom'
+import { BsCardImage, BsFillImageFill, BsSearch } from 'react-icons/bs'
 import { FaUserAlt, FaUserMinus } from 'react-icons/fa'
 import { AiFillPlusCircle, AiOutlinePlusCircle } from 'react-icons/ai'
-import { BsLightningCharge } from 'react-icons/bs'
-import { logOut } from '../features/users/usersSlice'
+import { logOut } from '../../features/users/usersSlice'
 import { useDispatch, useSelector } from "react-redux";
 import { signOut } from 'firebase/auth'
-import { auth } from '../services/Firebase'
-import { selectSignedInUser, selectUserDetails } from '../features/users/usersSlice'
-import SearchBar from './navbar/SearchBar'
+import { auth } from '../../services/Firebase'
+import { selectSignedInUser, selectUserDetails } from '../../features/users/usersSlice'
+import SearchBar from './SearchBar'
 
 
 const NavBar = () => {
@@ -23,6 +22,7 @@ const NavBar = () => {
     const navigate = useNavigate()
     const location = useLocation()
 
+    console.log(currUser)
 
     useEffect(() => {
         setShowMenu(false)
@@ -42,11 +42,6 @@ const NavBar = () => {
                 <Flex as='nav' align='center' justifyContent='space-around' gap='4' px={[4,10,36]}>
 
                     <Text fontSize='2xl' fontWeight='medium' color='blue.500'><Link as={NavLink} to='/'>ShareArts</Link></Text>
-                    
-                    {/* <InputGroup  justifySelf='center' w='40%'>
-                        <InputLeftElement pointerEvents='none' children={<BsSearch/>}/>
-                        <Input type='text' placeholder='Search' />
-                    </InputGroup> */}
                     <Box visibility={{base:'hidden', md:'visible'}} position='relative' justifyContent='center' w='30%'>
                         <SearchBar/>
                     </Box>
@@ -60,21 +55,33 @@ const NavBar = () => {
                             onClick={() => setShowSearchBox(prevState=> !prevState)}
                         />
                         
-                        <Link as={NavLink} to='/createPost' _activeLink={{color:'blue.500'}}>
+                        {currUser.userId && <Link as={NavLink} to='/createPost' _activeLink={{color:'blue.500'}}>
                             {location.pathname === '/createPost' ? <AiFillPlusCircle size='25px'/>: <AiOutlinePlusCircle size='28px'/>}
-                        </Link>
+                        </Link>}
                         
-                        <Link as={NavLink} to='/explore'>
-                            <BsLightningCharge size='25px'/>
-                            {/* <BsFillLightningCharge size='25px'/> */}
-                        </Link>
-                        
-                        <Avatar
-                            size='sm'
-                            src={currUserDetails?.profileImage}
-                            cursor='pointer'
-                            onClick={() => setShowMenu(prevState=>!prevState)}
-                        />
+                        {currUser.userId &&  <Link as={NavLink} to='/friendsPost' _activeLink={{color:'blue.500'}}>
+                            {location.pathname === '/friendsPost' ? <BsFillImageFill size='25px'/>: <BsCardImage size='28px'/>}
+                        </Link>}
+
+                       {currUser.userId 
+                       ? (
+                           <Avatar
+                                size='sm'
+                                src={currUserDetails?.profileImage}
+                                cursor='pointer'
+                                onClick={() => setShowMenu(prevState=>!prevState)}
+                            />
+                       ): (
+                            <>
+                                <Link as={ReachLink} to='/auth'>
+                                    <Button colorScheme='blue' variant='outline'>LogIn</Button>
+                                </Link>
+                                <Link as={ReachLink} to='/auth'>
+                                    <Button colorScheme='blue'>SignUp</Button>
+                                </Link>
+                            </>
+                       )
+                    }
 
                         {showMenu && <Box backgroundColor='white' boxShadow='md' position='absolute' top='10' right={{base:'2', md:'0'}} zIndex='10'>
                             <Link as={NavLink} to={`/profile/${currUser.userId}/posts`}>
