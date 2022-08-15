@@ -4,7 +4,7 @@ import PostHeader from './PostHeader'
 import PostActions from './PostActions'
 import PostCaption from './PostCaption'
 import PostComments from './PostComments'
-import PostEditModal from './PostEditModal'
+import PostUpdateModal from './PostUpdateModal'
 import PostCommentForm from './PostCommentForm'
 
 
@@ -12,9 +12,14 @@ const PostContainer = ({post, allUsers, currUser}) => {
     const [showAction, setShowAction] = useState(false)
     const [showFullCaption, setShowFullCaption] = useState(false)
     const [showAllComments,setShowAllComments] = useState(false)
+    const [modalContent,setModalContent] = useState('edit')
     const {isOpen, onOpen, onClose} = useDisclosure()
     const postOwnerDetails = allUsers?.find(user => user.id === post.createdBy)
     const isOwner = currUser?.userId === post.createdBy
+
+    const handleModalContent = () => {
+        setModalContent('delete')
+    }
     
   return (
     <> 
@@ -26,6 +31,7 @@ const PostContainer = ({post, allUsers, currUser}) => {
                 postOwnerDetails={postOwnerDetails}
                 post={post}
                 onOpen={onOpen}
+                handleModalContent={handleModalContent}
             />
 
             {post?.imageUrl && <Box position='relative' mt='4' mb='2' width='full' height='lg' border='1px' borderColor='#f4f4f4'>
@@ -77,10 +83,11 @@ const PostContainer = ({post, allUsers, currUser}) => {
                 post={post}
                 currUserId ={currUser.userId}
             />}
-            <PostEditModal
-            isOpen={isOpen}
-            onClose={onClose}
-            post={post}
+            <PostUpdateModal
+                isOpen={isOpen}
+                onClose={onClose}
+                post={post}
+                modalContent={modalContent}
             />
         </Container>
     </>

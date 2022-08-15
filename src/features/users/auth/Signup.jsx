@@ -175,7 +175,7 @@ export const Signup = ({ onToggle, setShowLogin }) => {
                 </FormHelperText>
               </FormControl>
               <Button
-                borderRadius={0}
+                borderRadius='md'
                 variant="solid"
                 colorScheme='blue'
                 width="full"

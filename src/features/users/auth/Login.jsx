@@ -160,7 +160,7 @@ export const Login = ({ setShowLogin, onToggle, from }) => {
                 </FormHelperText>
               </FormControl>
               <Button
-                borderRadius={0}
+                borderRadius='md'
                 variant="solid"
                 colorScheme='blue'
                 width="full"

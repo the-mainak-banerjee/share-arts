@@ -83,6 +83,7 @@ const PostUploadForm = ({currentUser, currentUserDetails}) => {
         <Flex gap='2' alignItems='center' mb='2'>
             <Avatar
               size='sm'
+              src={currentUserDetails?.profileImage}
             />
             <Text fontWeight='medium' fontSize='xl'>{currentUserDetails?.name}</Text>
         </Flex>
