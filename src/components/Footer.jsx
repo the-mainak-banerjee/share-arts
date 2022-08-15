@@ -6,8 +6,8 @@ import { Link as ReachLink } from 'react-router-dom'
 const Footer = () => {
 
   return (
-    <Box as='footer' backgroundColor='#f8f8f8' mt='10' py='2' width='full'>
-        <Container centerContent width='container.xl'>
+    <Box as='footer' backgroundColor='#f8f8f8' mt='10' py='2'>
+        <Container centerContent>
             <Text mb='2' fontSize='2xl' fontWeight='medium' color='blue.500'><Link as={ReachLink} to='/'>ShareArts</Link></Text>
             <Text mb='2'>Made With &hearts; By Mainak in India</Text>
             <Flex gap='6' alignItems='center'>

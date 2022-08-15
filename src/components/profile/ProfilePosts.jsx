@@ -17,7 +17,7 @@ const ProfilePost = ({params, postType, currUser, handlePostType}) => {
 
   return (
     <>
-        <Flex gap='10' px='2' py='4' border='1px' borderColor='blue.300' borderRadius='lg' mb='10' maxW='xl' mx='auto' justifyContent='center'>
+        <Flex gap='10' px='2' py='4' borderX={{base:'0px', md:'1px'}} borderY='1px' borderColor='blue.300' borderRadius={{base:'none', md:'lg'}} mb='10' maxW='xl' mx='auto' justifyContent='center'>
             <Button 
               size='lg' 
               colorScheme='blue' 
