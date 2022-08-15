@@ -24,7 +24,7 @@ import { auth } from "../../../services/Firebase";
 const CFaLock = chakra(FaLock);
 const CMdEmail = chakra(MdEmail)
 
-export const Login = ({ setShowLogin, onToggle }) => {
+export const Login = ({ setShowLogin, onToggle, from }) => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [formData,setFormData] = useState({
@@ -52,7 +52,7 @@ export const Login = ({ setShowLogin, onToggle }) => {
     try{
         const userCredentials = await signInWithEmailAndPassword(auth,email,password)
         localStorage.setItem('share-art-tocken', userCredentials.user.accessToken)
-        navigate('/', {replace: true})
+        navigate(from, {replace: true})
     }catch(error){
         if(error.code === 'auth/user-not-found'){
             toast({
@@ -79,6 +79,13 @@ export const Login = ({ setShowLogin, onToggle }) => {
   const handleLogin = (e) => {
       e.preventDefault()
       logIn(formData.email, formData.password)
+  }
+
+  const handleGuestLogin = () => {
+    setFormData({
+      email: 'guest@gmail.com',
+      password: 'guest_123'
+    })
   }
 
   const handleShowClick = () => setShowPassword(!showPassword);
@@ -120,6 +127,7 @@ export const Login = ({ setShowLogin, onToggle }) => {
                     placeholder="email address" 
                     isInvalid={!isValidEmail && formData.email}
                     errorBorderColor='red.300'
+                    value={formData.email}
                     onChange={(e) => setFormData(prevState =>({...prevState, email:e.target.value}))}/>
                 </InputGroup>
                 <FormHelperText>
@@ -138,6 +146,7 @@ export const Login = ({ setShowLogin, onToggle }) => {
                     placeholder="Password"
                     isInvalid={!isValidPassword && formData.password }
                     errorBorderColor='red.300'
+                    value={formData.password}
                     onChange={(e) => setFormData(prevState =>({...prevState, password:e.target.value}))}
                   />
                   <InputRightElement width="4.5rem">
@@ -162,6 +171,7 @@ export const Login = ({ setShowLogin, onToggle }) => {
               >
                 Login
               </Button>
+              <Text onClick={handleGuestLogin} textAlign='right' cursor='pointer' _hover={{textDecoration: 'underline'}}>Use Guest Login</Text>
             </Stack>
           </form>
         </Box>
@@ -171,9 +181,6 @@ export const Login = ({ setShowLogin, onToggle }) => {
         <Text onClick={handleShowSignUp} color='blue.500' cursor='pointer'>
           Sign Up
         </Text>
-        {/* <Link as={ReachLink} to='/' color='blue.500' href="#">
-          Sign Up
-        </Link> */}
       </Flex>
     </Flex>
   );

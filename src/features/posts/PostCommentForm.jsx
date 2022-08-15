@@ -20,10 +20,12 @@ const PostCommentForm = ({ post, currUserId }) => {
     }
 
   return (
-    <Flex my='2' gap='2' px='2'>
-        <Input type='text' placeholder='add a comment' value={commentInput} onChange={(e) => setCommentInput(e.target.value)}/>
-        <Button colorScheme='blue' onClick={handleCommentCreation} isLoading={loading} loadingText='Posting...' disabled={!commentInput || loading}>Post</Button>
-    </Flex>
+    <>
+      <Flex my='2' gap='2' px='2'>
+          <Input type='text' placeholder='add a comment' value={commentInput} onChange={(e) => setCommentInput(e.target.value)}/>
+          <Button colorScheme='blue' onClick={handleCommentCreation} isLoading={loading} loadingText='Posting...' disabled={!commentInput || loading}>Post</Button>
+      </Flex>
+    </>
   )
 }
 

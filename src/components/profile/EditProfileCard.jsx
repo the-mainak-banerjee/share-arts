@@ -110,7 +110,7 @@ const EditProfileCard = ({ isOpen, onClose, currUserDetails, updateType }) => {
                                         <Container centerContent w='full'>
                                             <Avatar 
                                                 size='3xl'
-                                                src={uploadedImage ? URL.createObjectURL(uploadedImage) : currUserDetails.profileImage}
+                                                src={uploadedImage ? URL.createObjectURL(uploadedImage) : currUserDetails?.profileImage}
                                                 cursor='pointer'
                                             />
                                         </Container>

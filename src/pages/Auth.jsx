@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Flex,
   Heading,
@@ -8,13 +8,27 @@ import {
 } from "@chakra-ui/react";
 import { Login } from "../features/users/auth/Login";
 import { Signup } from "../features/users/auth/Signup";
+import { useLocation } from "react-router-dom";
 
 
 const Auth = () => {
 
   const [showLogin,setShowLogin] = useState(false)
+  const location = useLocation()
   const { isOpen, onToggle } = useDisclosure()
-  
+  const from = location.state?.from?.pathname ?? '/'
+
+
+  useEffect(() => {
+    if(location.state?.logIn === true){
+      setShowLogin(true)
+      onToggle()
+    }
+    
+    // eslint-disable-next-line
+  },[location])
+
+ 
 
   return (
     <Flex
@@ -39,12 +53,14 @@ const Auth = () => {
                   <Login
                     setShowLogin={setShowLogin}
                     onToggle={onToggle}
+                    from={from}
                   />
                 </SlideFade>
             ) : (
                 <Signup
                   onToggle={onToggle}
                   setShowLogin = {setShowLogin}
+                  from={from}
                 />
             )
           }

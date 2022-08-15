@@ -45,14 +45,16 @@ const Profile = () => {
                   ? (
                     <Button colorScheme='blue' onClick={handleDetailsUpdate}>Edit Profile</Button>
                   ) : (
-                    <Button 
-                      colorScheme={userDetails?.followers?.some(id => id === currUser.userId) ? 'gray' : 'blue'} 
-                      isLoading={loading} 
-                      disabled={loading}
-                      onClick={() => handleFollow(params.userId,userDetails,currUserDetails)}  
-                    >
-                        {userDetails?.followers?.some(id => id === currUser.userId) ? 'Unfollow' : 'Follow'}
-                    </Button>
+                    <>
+                      {currUser?.userId && <Button 
+                        colorScheme={userDetails?.followers?.some(id => id === currUser.userId) ? 'gray' : 'blue'} 
+                        isLoading={loading} 
+                        disabled={loading}
+                        onClick={() => handleFollow(params.userId,userDetails,currUserDetails)}  
+                      >
+                          {userDetails?.followers?.some(id => id === currUser.userId) ? 'Unfollow' : 'Follow'}
+                      </Button>}
+                    </>
                   )
                 }
               </Flex>

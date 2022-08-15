@@ -18,6 +18,8 @@ import { setUser, setUserTocken, setAllUsers } from './features/users/usersSlice
 import formatDate from "./utils/FormatDate";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import FriendsPost from "./pages/FriendsPost";
+import PrivateRoutes from "./components/protectedRoutes/PrivateRoutes";
+import RestrictedRoute from "./components/protectedRoutes/RestrictedRoute";
 
 
 function App() {
@@ -61,15 +63,19 @@ function App() {
       {location.pathname !== '/auth' && <NavBar/> }
       <Routes>
         <Route path='/' element={<Home/>}/>
-        <Route path='/friendsPost' element={<FriendsPost/>}/>
-        <Route path='/auth' element={<Auth/>}/>
+        <Route element={<RestrictedRoute/>}>
+          <Route path='/auth' element={<Auth/>}/>
+        </Route>
         <Route path='/profile/:userId' element={<Profile/>}>
           <Route index element={<Posts/>}/>
           <Route path='posts' element={<Posts/>}/>
           <Route path='followers' element={<Followers/>}/>
           <Route path='following' element={<Following/>}/>
         </Route>
-        <Route path='/createPost' element={<CreatePost/>}/>
+        <Route element={<PrivateRoutes/>}>
+          <Route path='/createPost' element={<CreatePost/>}/>
+          <Route path='/friendsPost' element={<FriendsPost/>}/>
+        </Route>
       </Routes>
       {location.pathname !== '/auth' && <Footer/> }
     </ScrollToTop>

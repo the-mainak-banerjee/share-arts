@@ -29,6 +29,18 @@ const PostActions = ({ post, currUserId, setShowAllComments }) => {
       })
     }
   }
+
+  const handleCommentAction = () => {
+    if(post.comments?.length > 0){
+      setShowAllComments(prevState => !prevState)
+    }else{
+      toast({
+        title: 'No Comments To Show',
+        status: 'info',
+        position: 'bottom-left'
+      })
+    }
+  }
   
   const handleSaveAction = () => {
     if(currUserId){
@@ -59,7 +71,7 @@ const PostActions = ({ post, currUserId, setShowAllComments }) => {
               </>
             )
           }
-            <FaRegComment cursor='pointer' size='25px' onClick={() => setShowAllComments(prevState => !prevState)}/>
+            <FaRegComment cursor='pointer' size='25px' onClick={handleCommentAction}/>
 
             <Spacer/>
 

@@ -1,6 +1,6 @@
 import { Avatar, Box, Button, Flex, Icon, Link, Spacer, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
-import { NavLink, Link as ReachLink, useNavigate, useLocation } from 'react-router-dom'
+import { NavLink, useNavigate, useLocation } from 'react-router-dom'
 import { BsCardImage, BsFillImageFill, BsSearch } from 'react-icons/bs'
 import { FaUserAlt, FaUserMinus } from 'react-icons/fa'
 import { AiFillPlusCircle, AiOutlinePlusCircle } from 'react-icons/ai'
@@ -22,7 +22,6 @@ const NavBar = () => {
     const navigate = useNavigate()
     const location = useLocation()
 
-    console.log(currUser)
 
     useEffect(() => {
         setShowMenu(false)
@@ -73,12 +72,8 @@ const NavBar = () => {
                             />
                        ): (
                             <>
-                                <Link as={ReachLink} to='/auth'>
-                                    <Button colorScheme='blue' variant='outline'>LogIn</Button>
-                                </Link>
-                                <Link as={ReachLink} to='/auth'>
-                                    <Button colorScheme='blue'>SignUp</Button>
-                                </Link>
+                                <Button colorScheme='blue' variant='outline' onClick={() => navigate('/auth', {state:{from: location, logIn:true}})}>LogIn</Button>
+                                <Button colorScheme='blue' onClick={() => navigate('/auth', {state:{from: location}})}>SignUp</Button>
                             </>
                        )
                     }

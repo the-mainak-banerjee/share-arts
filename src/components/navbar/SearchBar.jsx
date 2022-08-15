@@ -1,4 +1,4 @@
-import { Flex, Input, InputGroup, InputLeftElement, InputRightElement, Skeleton, SkeletonCircle } from '@chakra-ui/react'
+import { Flex, Input, InputGroup, InputLeftElement, InputRightElement, Skeleton, SkeletonCircle, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { BsSearch } from 'react-icons/bs'
@@ -45,30 +45,35 @@ const SearchBar = () => {
             {searchTerm && <InputRightElement children={<AiOutlineClose/>} cursor='pointer' onClick={() => setSearchTerm('')}/>}
         </InputGroup>
         <Flex display={searchTerm ? 'block' : 'none'} py='4' px='2' width='full' position='absolute' top='10' backgroundColor='white' zIndex='10' border='1px' borderColor='blue.300'>
-            {searchResults === null
-                ? (
-                    <>
-                        {Array.of('1','2','3').map(item => {
-                            return(
-                                <Flex key={item} gap='2' alignItems='center' px='2' mb='2'>
-                                    <SkeletonCircle size='10'/>
-                                    <Skeleton height='15px' width='25%'/>
-                                </Flex>
+            <>
+                {searchResults?.length === 0
+                    ? (
+                        <>
+                            <Text textAlign='center'>No Results Found</Text>
+                        </>
+                    ) : (
+                        <>
+                            {searchResults?.map(item => {
+                                return (
+                                    <UserCard key={item.id} idOfUser={item.id}/>
                                 )
-                            })
-                        }
-                    
-                    </>
-                ) : (
-                    <>
-                        {searchResults?.map(item => {
-                            return (
-                                <UserCard key={item.id} idOfUser={item.id}/>
+                            })}
+                        </>
+                    )
+                }
+                {searchResults === null && <>
+                    {Array.of('1','2','3').map(item => {
+                        return(
+                            <Flex key={item} gap='2' alignItems='center' px='2' mb='2'>
+                                <SkeletonCircle size='10'/>
+                                <Skeleton height='15px' width='25%'/>
+                            </Flex>
                             )
-                        })}
-                    </>
-                )
-            }
+                        })
+                    }
+                
+                </>}
+            </>
                     
         </Flex>
    </>

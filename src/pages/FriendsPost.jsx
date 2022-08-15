@@ -20,18 +20,16 @@ const FriendsPost = () => {
 
     useEffect(() => {
         let unsub;
-        let friendPost = []
-        currUserDetails?.following?.forEach(item => {
-            unsub = onSnapshot(query(collection(db,'posts'),where('createdBy', '==', `${item}`)) , (querySnapshot) => {
-              const allPosts = querySnapshot.docs.map((doc) => ({
-                  ...doc.data(),
-                  id: doc.id,
-                  createdAt: formatDate(doc.data().createdAt)
-              }))
-              friendPost = [...friendPost, ...allPosts]
-              dispatch(setFriendsPosts(friendPost))
-            })
-        })
+            if(currUserDetails?.following?.length > 0){
+                unsub = onSnapshot(query(collection(db,'posts'),where('createdBy', 'in', currUserDetails?.following)) , (querySnapshot) => {
+                  const allPosts = querySnapshot.docs.map((doc) => ({
+                      ...doc.data(),
+                      id: doc.id,
+                      createdAt: formatDate(doc.data().createdAt)
+                  }))
+                  dispatch(setFriendsPosts(allPosts))
+                })
+            }
         
         if(currUserDetails?.following?.length === 0) {
             dispatch(setFriendsPosts([]))

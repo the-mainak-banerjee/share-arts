@@ -72,11 +72,11 @@ const PostContainer = ({post, allUsers, currUser}) => {
             </Box>
             }
         
-            <Divider my='2'/>
-            <PostCommentForm
+            {currUser?.userId && <Divider my='2'/>}
+            {currUser?.userId && <PostCommentForm
                 post={post}
                 currUserId ={currUser.userId}
-            />
+            />}
             <PostEditModal
             isOpen={isOpen}
             onClose={onClose}

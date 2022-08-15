@@ -25,7 +25,7 @@ const UserCard = ({idOfUser}) => {
             </Flex>
         </Box>
         <Spacer/>
-        {idOfUser !== currUser.userId && <Button
+        {currUser?.userId && idOfUser !== currUser.userId && <Button
           colorScheme={userDetails?.followers?.some(id => id === currUser.userId) ? 'gray' : 'blue'} 
           isLoading={loading} 
           disabled={loading}
