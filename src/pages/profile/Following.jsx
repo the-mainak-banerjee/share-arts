@@ -14,7 +14,8 @@ const Following = () => {
 
   return (
     <>
-        {userDetails?.following?.length > 0 && <Flex flexDirection='column' gap='4' px='2' pt='4' border='1px' borderColor='blue.300' borderRadius='lg' mb='10' maxW='xl' mx='auto' justifyContent='center'>
+        {userDetails?.following?.length > 0 && <Flex flexDirection='column' gap='4' px='2' py='4' border='1px' borderColor='blue.300' borderRadius='lg' mb='10' maxW='xl' mx='auto' justifyContent='center'>
+            <Text textAlign='center' fontSize='xl' fontWeight='bold'>Following</Text>
              {userDetails?.following?.map(followingUserId => {
                 return (
                     <UserCard
@@ -24,7 +25,7 @@ const Following = () => {
                 )
              })}
         </Flex>}
-        {userDetails?.following?.length === 0 && <Container centerContent height='80vh' width='container.xl'>
+        {userDetails?.following?.length === 0 && <Container centerContent width='container.xl'>
             <Text fontSize='xl' fontWeight='medium'>No Followers To Display!!</Text>
         </Container>
 

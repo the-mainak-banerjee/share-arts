@@ -13,7 +13,7 @@ const CreatePost = () => {
 
   return (
     <Box>
-      <Flex alignItems='center' justifyContent='center' pt='30' backgroundColor='#f4f4f4' h='100vh'>  
+      <Flex alignItems='center' justifyContent='center'>  
           <PostUploadForm
             currentUser={currentUser.userId}
             currentUserDetails = {currentUserDetails}

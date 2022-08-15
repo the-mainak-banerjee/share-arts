@@ -51,7 +51,7 @@ const ProfilePost = ({params, postType, currUser, handlePostType}) => {
                 })}
               </Flex>
           ) : (
-              <Container centerContent height='80vh' width='container.xl'>
+              <Container centerContent height='80vh'>
                 <Text fontSize='xl' fontWeight='medium'>No Post To Display!!</Text>
                 {params.userId === currUser.userId && <Button mt='4' colorScheme='blue' onClick={() => navigate('/createPost')}>Upload New Post</Button>}
               </Container>
@@ -74,7 +74,7 @@ const ProfilePost = ({params, postType, currUser, handlePostType}) => {
                 })}
               </Flex>
           ) : (
-              <Container centerContent height='80vh' width='container.xl'>
+              <Container centerContent height='80vh'>
                 <Text fontSize='xl' fontWeight='medium'>No Post To Display!!</Text>
                 {params.userId === currUser.userId && <Button mt='4' colorScheme='blue' onClick={() => navigate('/')}>Explore Posts</Button>}
               </Container>

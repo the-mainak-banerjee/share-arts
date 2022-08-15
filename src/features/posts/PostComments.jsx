@@ -26,6 +26,7 @@ const PostComments = ({ comment,post, currUserId }) => {
     <Flex mt='2' gap='2' key={comment.id}>
         <Avatar
             size='xs'
+            src={commentOwner.profileImage}
         />
         <Flex flexDirection='column'>
           <Text>

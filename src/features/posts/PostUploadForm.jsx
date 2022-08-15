@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Container, Flex, FormControl, FormLabel, IconButton, Image, Input, Text, Textarea, useToast } from '@chakra-ui/react'
+import { Avatar, Box, Button, Container, Flex, FormControl, FormLabel, IconButton, Image, Input, Progress, Text, Textarea, useToast } from '@chakra-ui/react'
 import React from 'react'
 import { useState } from 'react'
 import { BsFileImage } from 'react-icons/bs'
@@ -14,6 +14,7 @@ const PostUploadForm = ({currentUser, currentUserDetails}) => {
   const [captionInput,setCaptionInput] = useState('')
   const [uploadedImage, setUploadedImage] = useState('')
   const [loading,setLoading] = useState(false)
+  const [progress, setProgress] = useState(null)
   const toast = useToast()
   const navigate = useNavigate()
 
@@ -54,7 +55,7 @@ const PostUploadForm = ({currentUser, currentUserDetails}) => {
     uploadTask.on('state_changed',
         (snapshot) => {
             const progressAmount = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-            // setProgress(progressAmount)
+            setProgress(progressAmount)
         },
         (error) => {
             toast({
@@ -70,21 +71,15 @@ const PostUploadForm = ({currentUser, currentUserDetails}) => {
                 setUploadedImage('')
                 setCaptionInput('')
                 setLoading(false)
+                setProgress(null)
                 navigate('/', {replace:true})
             }) 
         }
-    )
-        
-    // }else{                
-    //         savePostInFirestore(captionInput)
-    //         setCaptionInput('')
-    //         setLoading(false)
-    //         navigate('/', {replace:true})
-    // }           
+    )         
 }
 
   return (
-    <Container px='2' py='4' maxW='xl' backgroundColor='white' border='1px' borderColor='blue.300' borderRadius='lg' boxShadow='lg' position='relative'>
+    <Container px='2' py='4' maxW='xl' backgroundColor='white' border='1px' borderColor='blue.300' borderRadius='lg' boxShadow='lg' position='relative' mt={uploadedImage ? '40' : '32'}>
         <Flex gap='2' alignItems='center' mb='2'>
             <Avatar
               size='sm'
@@ -114,6 +109,7 @@ const PostUploadForm = ({currentUser, currentUserDetails}) => {
             </FormLabel>
             <Input type='file' accept='image/*' display='none' onChange={handleImageInput}/>
           </FormControl>
+          {progress>0 && <Progress mt='2' hasStripe value={progress}/>}
         </Box>
         <Button 
             mt='4' 

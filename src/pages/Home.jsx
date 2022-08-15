@@ -36,8 +36,8 @@ const Home = () => {
   
   
   return (
-   <Box as='section' backgroundColor='#f8f8f8'>
-    <Flex alignItems='center' justifyContent='center' flexDirection='column' gap='6' pt='32'>
+   <Box as='section' pt='32'>
+    <Flex alignItems='center' justifyContent='center' flexDirection='column' gap='6'>
       {posts?.length > 0
         ? (
             <>

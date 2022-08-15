@@ -72,6 +72,8 @@ export const Signup = ({ onToggle, setShowLogin }) => {
           email: email,
           followers: [],
           following: [],
+          bio:'',
+          profileImage: '',
           dateCreated: serverTimestamp()
       })
 

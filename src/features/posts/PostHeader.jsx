@@ -30,6 +30,7 @@ const PostHeader = ({post, showAction, setShowAction, postOwnerDetails, isOwner,
         <Flex gap='2' alignItems='center' px='2'>
             <Avatar
               size='sm'
+              src={postOwnerDetails?.profileImage}
             />
             <Link as={ReachLink} to={`/profile/${postOwnerDetails?.id}/posts`}>
               <Text fontWeight='medium' fontSize='xl'>{postOwnerDetails?.name}</Text>
