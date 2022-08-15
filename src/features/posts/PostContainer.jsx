@@ -23,7 +23,7 @@ const PostContainer = ({post, allUsers, currUser}) => {
     
   return (
     <> 
-        <Container px='0' py='4' maxW='xl' backgroundColor='white' border='1px' borderColor='blue.300' borderRadius='lg' boxShadow='lg' position='relative'>
+        <Container px='0' py='4' mb='4' maxW='xl' backgroundColor='white' borderY='1px' borderX={{base:'0px', md:'1px'}} borderColor='blue.300' borderRadius={{base:'none', md:'lg'}} boxShadow={{base:'none', md: 'lg'}} position='relative'>
             <PostHeader
                 showAction={showAction}
                 setShowAction={setShowAction}

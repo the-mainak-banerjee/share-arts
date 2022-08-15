@@ -15,10 +15,10 @@ const UserCard = ({idOfUser}) => {
 
 
   return (
-    <Flex gap='2'>
+    <Flex gap='2' mb='2'>
         <Avatar src={userDetails?.profileImage}/>
         <Box>
-            <Heading size='md'><Link as={ReachLink} to={`/profile/${idOfUser}/posts`}>{userDetails?.name}</Link></Heading>
+            <Heading size={{base:'sm', md:'md'}}><Link as={ReachLink} to={`/profile/${idOfUser}/posts`}>{userDetails?.name}</Link></Heading>
             <Flex alignItems='center' gap='2' my='1'>
               <Text fontWeight='medium' fontSize={{base:'sm', md:'md'}}>{userDetails?.following?.length} Following</Text>
               <Text fontWeight='medium' fontSize={{base:'sm', md:'md'}}>{userDetails?.followers?.length} {userDetails?.followers?.length > 1 ? 'Followers' : 'Follower'}</Text>

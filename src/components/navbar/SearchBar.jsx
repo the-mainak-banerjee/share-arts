@@ -44,7 +44,7 @@ const SearchBar = () => {
             <Input type='text' placeholder='Search' value={searchTerm} onChange={(e) => handleChange(e)}/>
             {searchTerm && <InputRightElement children={<AiOutlineClose/>} cursor='pointer' onClick={() => setSearchTerm('')}/>}
         </InputGroup>
-        <Flex display={searchTerm ? 'block' : 'none'} py='4' px='2' width='full' position='absolute' top='10' backgroundColor='white' zIndex='10' border='1px' borderColor='blue.300'>
+        <Flex display={searchTerm ? 'block' : 'none'} py='4' px='2' gap='4' width='full' position='absolute' top='10' backgroundColor='white' zIndex='10' border='1px' borderColor='blue.300'>
             <>
                 {searchResults?.length === 0
                     ? (

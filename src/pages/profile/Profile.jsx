@@ -35,12 +35,12 @@ const Profile = () => {
   return (
     <>
       <Box as='section' pt='32' minHeight='100vh'>
-        <Box px='2' py='6' mb='10' maxW='xl' mx='auto' border='1px' borderColor='blue.300' borderRadius='lg' boxShadow='lg' backgroundColor='white'>
+        <Box px='2' py='6' mb='10' maxW='xl' mx='auto' borderY='1px' borderX={{base:'0px', md:'1px'}} borderColor='blue.300' borderRadius={{base:'none', md:'lg'}} boxShadow='lg' backgroundColor='white'>
           <Flex alignItems='center' gap='6'>
               <Avatar size='xl' cursor='pointer' onClick={handlePhotoUpdate} src={userDetails?.profileImage}/>
             <Box>
               <Flex alignItems='center' gap='6'>
-                <Heading size='lg'>{userDetails?.name}</Heading>
+                <Heading size={{base:'md', md:'lg'}}>{userDetails?.name}</Heading>
                 {currUser.userId === params.userId 
                   ? (
                     <Button colorScheme='blue' onClick={handleDetailsUpdate}>Edit Profile</Button>
