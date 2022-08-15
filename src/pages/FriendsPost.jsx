@@ -60,9 +60,9 @@ const FriendsPost = () => {
                 <>
                     {currUserDetails?.following?.length === 0
                         ? (
-                            <Text fontSize='xl'>Start Following People To See Their Posts</Text>
+                            <Text fontSize='xl' textAlign='center' width='70%'>Start Following People To See Their Posts</Text>
                         ) : (
-                            <Text fontSize='xl'>The Members In Your Nerwork Havent posted anything. Start Following More People To See Their Posts.</Text>
+                            <Text fontSize='xl' textAlign='center' width='70%'>The Members In Your Nerwork Havent posted anything. Start Following More People To See Their Posts.</Text>
                         )
                     }
                     <Link as={ReachLink} to='/'>

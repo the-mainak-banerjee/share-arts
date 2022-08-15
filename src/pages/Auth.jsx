@@ -45,7 +45,7 @@ const Auth = () => {
           objectFit='cover'
         /> */}
         <Heading>Share-Arts</Heading>
-        <Text fontSize='lg' textAlign='center' px='4' mb='4' w='30%'>Start Sharing Your Arts and Connect With Fellow Artists</Text>
+        <Text fontSize='lg' textAlign='center' px='4' mb='4' w={{base:'80%',md:'50%', lg:'30%'}}>Start Sharing Your Arts and Connect With Fellow Artists</Text>
   
           {showLogin
             ?(
