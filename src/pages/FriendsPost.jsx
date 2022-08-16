@@ -8,6 +8,7 @@ import { db } from '../services/Firebase'
 import formatDate from '../utils/FormatDate'
 import { Box, Button, Flex, Text } from '@chakra-ui/react'
 import PostContainer from '../features/posts/PostContainer'
+import PostSkeleton from '../components/skeletons/PostSkeleton'
 
 const FriendsPost = () => {
 
@@ -42,6 +43,13 @@ const FriendsPost = () => {
   return (
     <Box as='section' pt='32' minHeight='100vh'>
         <Flex alignItems='center' justifyContent='center' flexDirection='column' gap='6'>
+        {friendsPosts === null && Array.of(1,2,3,4,5).map(item => {
+                return (
+                  <PostSkeleton
+                    key={item}
+                  />
+                )
+              })}
         {friendsPosts?.length > 0
             ? (
                 <>

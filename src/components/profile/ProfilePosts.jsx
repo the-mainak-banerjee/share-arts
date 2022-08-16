@@ -5,6 +5,7 @@ import PostContainer from '../../features/posts/PostContainer'
 import {  seletAllUsers } from '../../features/users/usersSlice'
 import { selectUserPosts, selectSavedPosts } from '../../features/posts/postsSlice'
 import { useNavigate } from 'react-router-dom'
+import PostSkeleton from '../skeletons/PostSkeleton'
 
 
 const ProfilePost = ({params, postType, currUser, handlePostType}) => {
@@ -36,6 +37,13 @@ const ProfilePost = ({params, postType, currUser, handlePostType}) => {
             </Button>
         </Flex>}
       {postType==='ownPost' && <>
+        {userPosts === null && Array.of(1,2,3).map(item => {
+                return (
+                  <PostSkeleton
+                    key={item}
+                  />
+                )
+        })}
         {userPosts?.length>0 
           ? (
               <Flex alignItems='center' justifyContent='center' flexDirection='column' gap='6'>
@@ -59,6 +67,13 @@ const ProfilePost = ({params, postType, currUser, handlePostType}) => {
         }
       </>}
       {postType==='savedPost' && <>
+      {savedPosts === null && Array.of(1,2,3).map(item => {
+                return (
+                  <PostSkeleton
+                    key={item}
+                  />
+                )
+        })}
         {savedPosts?.length>0 
           ? (
               <Flex alignItems='center' justifyContent='center' flexDirection='column' gap='6'>

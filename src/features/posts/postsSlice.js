@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     allPosts:[],
-    friendsPost: [],
-    savedPosts:[],
-    userPosts: []
+    friendsPost: null,
+    savedPosts:null,
+    userPosts: null
 }
 
 
