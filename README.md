@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# ShareArts
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A Social Media Platforms For Artists To Showcase Their Arts.
 
-## Available Scripts
+## Functionalities
 
-In the project directory, you can run:
+- User Auth (Create New Account, Log In, Use Guest Login)
+- Customize Profile with DP and Bio. Also, Change them in the future.
+- Upload a new post with an Image and Caption.
+- Edit and Delete Uploaded Post.
+- View, Like, Comment, and Save Others Posts.
+- Follow and Unfollow others.
+- Only view followers' posts.
+- Users can search for other users by using their names.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### `Auth`
+- Can create an account and login into the account.
+- Also users can use a guest login to explore the app.
+- After login or signup users will be redirected to the home page or the page from there they cam to auth page.
+- The profile page, Friends post page, and Create Post page will only be accessible after login.
+- User will not be able to access the auth page if he/she is already logged in.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### `Post Management`
 
-### `npm test`
+- User can create a new post by going to the Create Post page.
+- The + icon in the navbar redirects to Create Post page.
+- In the post creation form user can upload an image, view the preview of the image, remove the image and upload a new one and then publish the image with a caption.
+- User has to add a caption before publishing an Image.
+- After publishing a post user can also edit the caption and delete that post.
+- Users can also view the posts of all users on the home page and posts of only their followers on the Friends Post page.
+- Clicking on the image icon in the navbar will redirect to Friends Post Page.
+- Users can like/dislike, save/unsave any post, and comment on any post. Also, the user can delete his own comment from any post.
+- Clicking on the comment icon in the post container, reveal all comments in that post only if there are any. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `Profile Management`
 
-### `npm run build`
+- Users can click on the name of the user mentioned in their post and post caption and also in a comment to go to the profile page of that particular user.
+- On the profile page user can see the posts of that user. And also users can see followers and the following list of that user.
+- Also users can follow and unfollow a user by going to that user profile.
+- In his own profile user can see his save posts.
+- User can edit his name, and bio by clicking on the edit post button in his own profile.
+- User can change his DP by clicking on his DP.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `Search Management`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Users can search for other users by name by using the search bar in Navbar.
+- After searching a list of users whose names match the user search term will display on the screen. By clicking on their name user can visit their profile.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Technologies Used
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- React JS
+- React Router
+- React Icons
+- React Redux Toolkit
+- Firebase[Storage, Auth, Firestore]
+- Chakra UI
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Screens
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### `Home Page`
 
-## Learn More
+![image](https://user-images.githubusercontent.com/94280354/184822274-4d4ede03-3e24-4943-8d0b-0773e9c41119.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### `Upload Post Page`
 
-### Code Splitting
+![image](https://user-images.githubusercontent.com/94280354/184822333-18bbdd30-503b-4ce9-9e9c-356568d9f7f3.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+### `Profile Page`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![image](https://user-images.githubusercontent.com/94280354/184822440-94ef9203-c5aa-4ee6-ba81-68cda6fb7df6.png)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![image](https://user-images.githubusercontent.com/94280354/184822726-259bd838-a842-4f10-b402-3c5528df9ba3.png)
