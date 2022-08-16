@@ -2,6 +2,8 @@
 
 A Social Media Platforms For Artists To Showcase Their Arts.
 
+>[Click Here](https://share-arts.netlify.app/) To See The Live App
+
 ## Functionalities
 
 - User Auth (Create New Account, Log In, Use Guest Login)
