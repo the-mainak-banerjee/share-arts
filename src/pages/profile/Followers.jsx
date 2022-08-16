@@ -24,7 +24,7 @@ const Followers = () => {
                 )
              })}
         </Flex>}
-        {userDetails?.followers?.length === 0 && <Container centerContent width='container.xl'>
+        {userDetails?.followers?.length === 0 && <Container centerContent>
             <Text fontSize='xl' fontWeight='medium'>No Followers To Display!!</Text>
         </Container>
 

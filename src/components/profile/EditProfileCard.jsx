@@ -125,7 +125,7 @@ const EditProfileCard = ({ isOpen, onClose, currUserDetails, updateType }) => {
                 <ModalFooter>
                     {updateType === 'details' && <Button colorScheme='blue' disabled={(nameInput===currUserDetails?.name && bioInput===currUserDetails?.bio) || !nameInput || loading} onClick={handleProfileUpdate}>Save Profile</Button>}
                     {updateType === 'photo' && <Button colorScheme='blue' disabled={!uploadedImage || loading} isLoading={loading} loadingText='Uploading Photo...' onClick={handlePhotoUpdate}>Save Profile</Button>}   
-                    <Button onClick={handleClose} ml='4'>Close</Button>
+                    <Button onClick={handleClose} ml='4' color='red.300' _hover={{backgroundColor: 'red', color:'white'}}>Close</Button>
                 </ModalFooter>
             </ModalContent>
         </Modal>
