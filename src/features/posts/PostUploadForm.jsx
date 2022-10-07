@@ -1,4 +1,4 @@
-import { Avatar, Box, Button, Container, Flex, FormControl, FormLabel, IconButton, Image, Input, Progress, Text, Textarea, useToast } from '@chakra-ui/react'
+import { Avatar, Box, Button, Container, Flex, FormControl, FormLabel, IconButton, Image, Input, Link, Progress, Text, Textarea, useToast } from '@chakra-ui/react'
 import React from 'react'
 import { useState } from 'react'
 import { BsFileImage } from 'react-icons/bs'
@@ -6,7 +6,7 @@ import { AiOutlineCloseCircle } from 'react-icons/ai'
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import { db, storage } from '../../services/Firebase'
 import { v4 as uuid } from 'uuid'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link as ReachLink } from 'react-router-dom'
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore'
 
 const PostUploadForm = ({currentUser, currentUserDetails}) => {
@@ -85,7 +85,9 @@ const PostUploadForm = ({currentUser, currentUserDetails}) => {
               size='sm'
               src={currentUserDetails?.profileImage}
             />
-            <Text fontWeight='medium' fontSize='xl'>{currentUserDetails?.name}</Text>
+            <Link as={ReachLink} to={`/profile/${currentUser}/posts`}>
+              <Text fontWeight='medium' fontSize='xl'>{currentUserDetails?.name}</Text>
+            </Link>
         </Flex>
         <Textarea placeholder='Add Caption Here...' outline='0' border='0' value={captionInput} onChange={(e) => setCaptionInput(e.target.value)}/>
         <Box mt='2' border='2px' borderColor='gray.300'>

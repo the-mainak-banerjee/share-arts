@@ -12,13 +12,13 @@ const PostContainer = ({post, allUsers, currUser}) => {
     const [showAction, setShowAction] = useState(false)
     const [showFullCaption, setShowFullCaption] = useState(false)
     const [showAllComments,setShowAllComments] = useState(false)
-    const [modalContent,setModalContent] = useState('edit')
+    const [modalContent,setModalContent] = useState('')
     const {isOpen, onOpen, onClose} = useDisclosure()
     const postOwnerDetails = allUsers?.find(user => user.id === post.createdBy)
     const isOwner = currUser?.userId === post.createdBy
 
-    const handleModalContent = () => {
-        setModalContent('delete')
+    const handleModalContent = (type) => {
+        setModalContent(type)
     }
     
   return (

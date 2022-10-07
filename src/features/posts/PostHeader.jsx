@@ -9,13 +9,14 @@ const PostHeader = ({post, showAction, setShowAction, postOwnerDetails, isOwner,
 
   // Delete post handler
   const handlePostDelete = () => {
-    handleModalContent()
+    handleModalContent('delete')
     onOpen()
     setShowAction(false)
   }
 
   // Edit post handler
   const handlePostEdit = () => {
+    handleModalContent('edit')
     onOpen()
     setShowAction(false)
   }

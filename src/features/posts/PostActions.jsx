@@ -52,7 +52,7 @@ const PostActions = ({ post, currUserId, setShowAllComments }) => {
       updatePost(data,setSaveLoading,toast,msg)
     }else{
       toast({
-        title: 'Please Login to like a post',
+        title: 'Please Login to save a post',
         status: 'info',
         position: 'bottom-left'
       })
